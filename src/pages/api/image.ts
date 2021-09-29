@@ -21,6 +21,7 @@ const shot = async (host: string) => {
     const agent = await puppeteer.launch({
         args: [...chromium.args, '--window-size=1920,1080'],
         headless: false,
+        defaultViewport: null,
         executablePath: await chromium.executablePath,
         env: {
             ...process.env,
@@ -30,10 +31,6 @@ const shot = async (host: string) => {
     const page = await agent.newPage()
     try {
         const targetElementSelector = '#server'
-        await page.setViewport({
-            width: 1000,
-            height: 100
-        })
         await page.goto(`https://motoped.vercel.app/${host}`)
         const clip = await page.evaluate((s: any) => {
             const el = document.querySelector(s)
