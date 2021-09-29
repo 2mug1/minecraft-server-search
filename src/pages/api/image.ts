@@ -21,11 +21,6 @@ const shot = async (host: string) => {
     const agent = await puppeteer.launch({
         args: chromium.args,
         headless: true,
-        defaultViewport: {
-            deviceScaleFactor: 1,
-            width: 1000,
-            height: 100,
-        },
         executablePath: await chromium.executablePath,
         env: {
             ...process.env,
@@ -45,7 +40,7 @@ const shot = async (host: string) => {
             const { width, height, top: y, left: x } = el.getBoundingClientRect()
             return { width, height, x, y }
         }, targetElementSelector)
-        return await page.screenshot({ clip, type: "png" })
+        return await page.screenshot({ clip, type: "png", quality: 100 })
     } finally {
         await page.close()
     }
