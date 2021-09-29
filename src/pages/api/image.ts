@@ -21,6 +21,11 @@ const shot = async (host: string) => {
     const agent = await puppeteer.launch({
         args: chromium.args,
         headless: true,
+        defaultViewport: {
+            deviceScaleFactor: 1,
+            width: 1000,
+            height: 100,
+        },
         executablePath: await chromium.executablePath,
         env: {
             ...process.env,
