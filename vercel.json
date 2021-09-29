@@ -1,0 +1,6 @@
+{
+    "routes": [
+        { "src": "/api/.*", "status": 404 },
+        { "src": "^/image/(?<host>[^/]*)", "dest": "/api/image?host=$host" }
+    ]
+}
