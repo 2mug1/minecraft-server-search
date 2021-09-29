@@ -1,13 +1,11 @@
-import { NewPingResult } from "minecraft-protocol"
 import { useEffect, useState } from "react"
 import { MinecraftServer } from "../types"
 import McText from 'mctext-react'
-import Image from 'next/image'
 
 export const Server: React.FC<{ server: MinecraftServer }> = ({ server }) => {
     const { status } = server
     return (
-        <div className="flex flex-row bg-black text-white p-1" id="#server">
+        <div className="flex flex-row bg-black text-white p-1" id="server">
             <img src={status.favicon} alt="" />
 
             <div className="ml-1 text-sm">
