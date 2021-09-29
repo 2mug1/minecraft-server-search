@@ -32,7 +32,7 @@ export const ServerImageLinks: React.FC<{ server: MinecraftServer }> = ({ server
     const [imageUrl, setImageUrl] = useState<string | null>()
 
     useEffect(() => {
-        setImageUrl(`https://motdx.vercel.app/image/${server.host}#.png`)
+        setImageUrl(`https://motoped.vercel.app/image/${server.host}#.png`)
     }, [])
 
     return (
