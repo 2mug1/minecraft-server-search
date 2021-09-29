@@ -20,6 +20,7 @@ const shot = async (host: string) => {
     const { puppeteer } = chromium
     const agent = await puppeteer.launch({
         args: chromium.args,
+        headless: true,
         executablePath: await chromium.executablePath,
         env: {
             ...process.env,
@@ -28,14 +29,15 @@ const shot = async (host: string) => {
     })
     const page = await agent.newPage()
     try {
-        const targetElementSelector = '#server'
+        const selector = '#server'
         await page.goto(`https://motoped.vercel.app/${host}`)
-        const clip = await page.evaluate((s: any) => {
-            const el = document.querySelector(s)
-            const { width, height, top: y, left: x } = el.getBoundingClientRect()
-            return { width, height, x, y }
-          }, targetElementSelector)
-        return await page.screenshot({clip, type: "png"})
+        await page.waitForSelector(selector);            
+        const element = await page.$(selector)     
+        if(element == null) return await page.close()
+        const box = await element.boundingBox()
+        if(box == null) return await page.close()
+        const { width, height, x, y} = box
+        return await page.screenshot({ clip: { width, height, x, y}, type: "png" })
     } finally {
         await page.close()
     }
