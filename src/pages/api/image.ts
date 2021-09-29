@@ -37,7 +37,7 @@ const shot = async (host: string) => {
             const { width, height, top: y, left: x } = el.getBoundingClientRect()
             return { width, height, x, y }
         }, targetElementSelector)
-        return await page.screenshot({ clip, type: "png", quality: 100 })
+        return await page.screenshot({ clip, type: "png" })
     } finally {
         await page.close()
     }
