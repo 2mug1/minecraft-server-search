@@ -36,6 +36,10 @@ const shot = async (host: string) => {
     try {
         const targetElementSelector = '#server'
         await page.goto(`https://motoped.vercel.app/${host}`)
+        await page.setViewport({
+            width: 1000,
+            height: 200
+        })
         const clip = await page.evaluate((s: any) => {
             const el = document.querySelector(s)
             const { width, height, top: y, left: x } = el.getBoundingClientRect()
