@@ -29,20 +29,18 @@ const shot = async (host: string) => {
     })
     const page = await agent.newPage()
     try {
-        const selector = '#server'
+        const targetElementSelector = '#server'
         await page.goto(`https://motoped.vercel.app/${host}`)
-        await page.waitForSelector(selector);            
-        const element = await page.$(selector)     
-        if(element == null) return await page.close()
-        const box = await element.boundingBox()
-        if(box == null) return await page.close()
-        const { width, height, x, y} = box
-        return await page.screenshot({ clip: { width, height, x, y}, type: "png" })
+        const clip = await page.evaluate((s: any) => {
+            const el = document.querySelector(s)
+            const { width, height, top: y, left: x } = el.getBoundingClientRect()
+            return { width, height, x, y }
+        }, targetElementSelector)
+        return await page.screenshot({ clip, type: "png" })
     } finally {
         await page.close()
     }
 }
-
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
     res.setHeader("X-Robots-Tag", "noindex")
