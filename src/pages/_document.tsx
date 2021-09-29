@@ -7,8 +7,7 @@ class MyDocument extends Document {
       <Html lang="ja">
         <Head>
           <meta charSet="utf-8" />
-          <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.css" rel="stylesheet"/>
-          <title>motdx</title>
+          <title>motoped</title>
         </Head>
         <body>
           <Main />
