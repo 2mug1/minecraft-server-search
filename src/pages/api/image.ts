@@ -19,8 +19,8 @@ const shot = async (host: string) => {
     //chromiumFontSetup()
     const { puppeteer } = chromium
     const agent = await puppeteer.launch({
-        args: chromium.args,
-        headless: true,
+        args: [...chromium.args, '--window-size=1920,1080'],
+        headless: false,
         executablePath: await chromium.executablePath,
         env: {
             ...process.env,
