@@ -43,7 +43,7 @@ const shot = async (host: string) => {
     }
 }
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+const image = async (req: NextApiRequest, res: NextApiResponse) => {
     res.setHeader("X-Robots-Tag", "noindex")
     const { host } = req.query
     if (typeof host != "string") return res.status(500)
@@ -54,3 +54,5 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         res.send(img);
     })
 }
+
+export default image
