@@ -29,6 +29,7 @@ export const getServerSideProps = async (context: Context) => {
             }
             resolve({
                 host,
+                imageUrl: `https://motoped.vercel.app/image/${host}#.png`,
                 status: result as NewPingResult
             })
         })
