@@ -31,22 +31,22 @@ export const ServerImageLinks: React.FC<{ server: MinecraftServer }> = ({ server
             <p>画像リンク</p>
             <textarea
                 className="form-input mt-1 block w-full border-solid border-2 rounded-md resize-none"
-                defaultValue={`https://motoped.vercel.app/image/${server.host}#.png`}
+                value={`https://motoped.vercel.app/image/${server.host}#.png`}
             />
             <p>Scrapbox</p>
             <textarea
                 className="form-input mt-1 block w-full border-solid border-2 rounded-md resize-none"
-                defaultValue={`[https://motoped.vercel.app/image/${server.host}#.png https://${server.host}]`}
+                value={`[https://motoped.vercel.app/image/${server.host}#.png https://${server.host}]`}
             />
             <p>Markdown</p>
             <textarea
                 className="form-input mt-1 block w-full border-solid border-2 rounded-md resize-none"
-                defaultValue={`[![${server.host}](https://motoped.vercel.app/image/${server.host}#.png)](https://${server.host})`}
+                value={`[![${server.host}](https://motoped.vercel.app/image/${server.host}#.png)](https://${server.host})`}
             />
             <p>HTML</p>
             <textarea
                 className="form-input mt-1 block w-full border-solid border-2 rounded-md resize-none"
-                defaultValue={`<a href="https://${server.host}"><img src="https://motoped.vercel.app/image/${server.host}#.png"></a>`}
+                value={`<a href="https://${server.host}"><img src="https://motoped.vercel.app/image/${server.host}#.png"></a>`}
             />
         </div>
 
