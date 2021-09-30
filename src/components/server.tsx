@@ -26,41 +26,29 @@ export const Server: React.FC<{ server: MinecraftServer }> = ({ server }) => {
 }
 
 export const ServerImageLinks: React.FC<{ server: MinecraftServer }> = ({ server }) => {
-
-    const [imageUrl, setImageUrl] = useState<string | null>()
-
-    useEffect(() => {
-        setImageUrl(`https://motoped.vercel.app/image/${server.host}#.png`)
-    }, [])
-
     return (
-        <>
-            {imageUrl && <div className="flex flex-col space-y-1">
+        <div className="flex flex-col space-y-1">
+            <p>画像リンク</p>
+            <textarea
+                className="form-input mt-1 block w-full border-solid border-2 rounded-md resize-none"
+                defaultValue={`https://motoped.vercel.app/image/${server.host}#.png`}
+            />
+            <p>Scrapbox</p>
+            <textarea
+                className="form-input mt-1 block w-full border-solid border-2 rounded-md resize-none"
+                defaultValue={`[https://motoped.vercel.app/image/${server.host}#.png https://${server.host}]`}
+            />
+            <p>Markdown</p>
+            <textarea
+                className="form-input mt-1 block w-full border-solid border-2 rounded-md resize-none"
+                defaultValue={`[![${server.host}](https://motoped.vercel.app/image/${server.host}#.png)](https://${server.host})`}
+            />
+            <p>HTML</p>
+            <textarea
+                className="form-input mt-1 block w-full border-solid border-2 rounded-md resize-none"
+                defaultValue={`<a href="https://${server.host}"><img src="https://motoped.vercel.app/image/${server.host}#.png"></a>`}
+            />
+        </div>
 
-                <p>画像リンク</p>
-                <textarea
-                    className="form-input mt-1 block w-full border-solid border-2 rounded-md resize-none"
-                    defaultValue={imageUrl}
-                />
-
-                <p>Scrapbox</p>
-                <textarea
-                    className="form-input mt-1 block w-full border-solid border-2 rounded-md resize-none"
-                    defaultValue={`[${imageUrl} https://${server.host}]`}
-                />
-
-                <p>Markdown</p>
-                <textarea
-                    className="form-input mt-1 block w-full border-solid border-2 rounded-md resize-none"
-                    defaultValue={`[![${server.host}](${imageUrl})](https://${server.host})`}
-                />
-
-                <p>HTML</p>
-                <textarea
-                    className="form-input mt-1 block w-full border-solid border-2 rounded-md resize-none"
-                    defaultValue={`<a href="https://${server.host}"><img src="${imageUrl}"></a>`}
-                />
-            </div>}
-        </>
     )
 }
