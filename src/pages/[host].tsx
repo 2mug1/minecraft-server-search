@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Head from 'next/head'
 
 import protocol, { NewPingResult } from 'minecraft-protocol'
 
@@ -67,9 +68,14 @@ const ServerPage: React.FC<ServerSideProps> = ({ server, error }) => {
     return (
         <>
             {server &&
-                <div className="mt-5">
-                    <Server server={server} />
-                    <div className="mt-3">
+                <>
+                    <Head>
+                        <title>motoped - {server.host}</title>
+                    </Head>
+                    <div className="mt-5">
+                        <Server server={server} />
+                    </div>
+                    <div className="mt-5">
                         <ServerImageLinks server={server} />
                     </div>
                     <div className="mt-10">
@@ -77,7 +83,7 @@ const ServerPage: React.FC<ServerSideProps> = ({ server, error }) => {
                             インデックスに戻る
                         </Link>
                     </div>
-                </div>
+                </>
             }
         </>
     )
