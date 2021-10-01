@@ -5,12 +5,7 @@ import protocol, { NewPingResult } from 'minecraft-protocol'
 
 import { Server, ServerImageLinks } from '../components/server';
 import { MinecraftServer } from '../types';
-
-type Context = {
-    query: {
-        host: string
-    }
-}
+import { GetServerSideProps } from 'next';
 
 type ServerSideProps = {
     error?: {
@@ -20,8 +15,20 @@ type ServerSideProps = {
     server?: MinecraftServer
 }
 
-export const getServerSideProps = async (context: Context) => {
-    const { host } = context.query
+export const getServerSideProps: GetServerSideProps<ServerSideProps> = async (ctx) => {
+    ctx.res.setHeader("Cache-Control", "max-age=300, public, stale-while-revalidate")
+    
+    const { host } = ctx.query
+
+    if(!host || host == null || typeof host != "string") return { 
+        props: {
+            error: {
+                code: 500,
+                message: "ホストを入力してください"
+            }
+        } 
+    }
+
     const port = host.split(":")[1] == null ? 25565 : Number(host.split(":")[1])
     const server = await new Promise<MinecraftServer | null>((resolve) => {
         protocol.ping({ host, port }, (err, result) => {
@@ -41,13 +48,13 @@ export const getServerSideProps = async (context: Context) => {
                     code: 404,
                     message: "サーバーが見つかりませんでした"
                 }
-            } as ServerSideProps
+            }
         }
     }
     return {
         props: {
             server: server
-        } as ServerSideProps
+        }
     }
 }
 
