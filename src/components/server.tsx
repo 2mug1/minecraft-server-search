@@ -41,7 +41,7 @@ export const ServerImageLinks: React.FC<{ server: MinecraftServer }> = ({ server
             <p>Markdown</p>
             <textarea
                 className="form-input mt-1 block w-full border-solid border-2 rounded-md resize-none"
-                value={`[![${server.host}](https://motoped.vercel.app/image/${server.host}#.png)](https://${server.host})`}
+                value={`[![https://${server.host}](https://motoped.vercel.app/image/${server.host}#.png)](https://${server.host})`}
             />
             <p>HTML</p>
             <textarea
