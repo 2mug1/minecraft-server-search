@@ -77,7 +77,7 @@ const ServerPage: React.FC<ServerSideProps> = ({ server, error }) => {
             {server &&
                 <>
                     <Head>
-                        <title>motoped - {server.host}</title>
+                        <title>minecraft-server-search - {server.host}</title>
                     </Head>
                     <div className="mt-5">
                         <Server server={server} />
