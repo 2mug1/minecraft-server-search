@@ -19,7 +19,7 @@ const shot = async (host: string) => {
     const page = await agent.newPage()
     try {
         const targetElementSelector = '#server'
-        await page.goto(`https://motoped.vercel.app/${host}`)
+        await page.goto(`https://minecraft-server-search.vercel.app/${host}`)
         const clip = await page.evaluate((s: any) => {
             const el = document.querySelector(s)
             const { width, height, top: y, left: x } = el.getBoundingClientRect()

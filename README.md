@@ -1,4 +1,4 @@
-# motoped
+# minecraft-server-search
 
 ## Licence
-iamtakagi/motoped is provided under the MIT license.
+iamtakagi/minecraft-server-search is provided under the MIT license.
